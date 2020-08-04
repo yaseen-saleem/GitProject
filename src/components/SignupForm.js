@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles.css';
 import {
 	useFormik,
 	Form,
@@ -30,7 +31,7 @@ function Checkbox({ id, name, className }) {
 }
 // A custom validation function. This must return an object
 // which keys are symmetrical to our values/initialValues
-const MyTextInput = ({ label, ...props }) => {
+export const MyTextInput = ({ label, ...props }) => {
 	// useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
 	// which we can spread on <input> and alse replace ErrorMessage entirely.
 	const [field, meta] = useField(props);
@@ -65,6 +66,12 @@ const validate = (values) => {
 		errors.email = 'Invalid email address';
 	}
 
+	if (!values.password) {
+		errors.password = 'Required';
+	} else if (values.password.length > 12) {
+		errors.password = 'Must be 12 characters or less';
+	}
+
 	return errors;
 };
 
@@ -77,16 +84,17 @@ const SignupForm = () => {
 			firstName: '',
 			lastName: '',
 			email: '',
+			password: '',
 		},
 		validate,
 		onSubmit: (values) => {
-			alert(JSON.stringify(values, null, 2));
+			console.log(JSON.stringify(values, null, 2));
 		},
 	});
 	return (
 		<Formik>
 			<form onSubmit={formik.handleSubmit}>
-				<h1>Signup Form</h1>
+				<h2 className='signup-tab'>Signup Form</h2>
 				<label htmlFor='firstName'>First Name</label>
 				<MyTextInput
 					id='firstName'
@@ -114,6 +122,15 @@ const SignupForm = () => {
 					value={formik.values.email}
 				/>
 				{formik.errors.email ? <div>{formik.errors.email}</div> : null}
+				<label htmlFor='password'>Password</label>
+				<MyTextInput
+					id='password'
+					name='password'
+					type='text'
+					onChange={formik.handleChange}
+					value={formik.values.password}
+				/>
+				{formik.errors.password ? <div>{formik.errors.password}</div> : null}
 				<label>
 					<Checkbox />
 					Accept The Terms

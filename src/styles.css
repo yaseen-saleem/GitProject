@@ -629,6 +629,7 @@ button[type='reset']:hover {
 }
 
 /* custom */
+
 input[type='email'],
 input[type='text'],
 input[type='number'],
@@ -647,4 +648,12 @@ label.checkbox {
 
 button[type='submit'] {
 	margin-top: 1rem;
+}
+.signup-tab,
+.login-tab {
+	color: #2a4365;
+	font-family: 'Courier New';
+}
+#password {
+	-webkit-text-security: disc;
 }
