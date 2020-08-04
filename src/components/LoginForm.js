@@ -8,6 +8,7 @@ import {
 	Formik,
 } from 'formik';
 import { MyTextInput } from './SignupForm';
+
 const validate = (values) => {
 	const errors = {};
 	if (!values.userName) {
@@ -24,10 +25,9 @@ const validate = (values) => {
 
 	return errors;
 };
-const LoginForm = () => {
+const LoginForm = ({ history }) => {
 	// Pass the useFormik() hook initial form values and a submit function that will
 	// be called when the form is submitted
-
 	const formik = useFormik({
 		initialValues: {
 			userName: '',
@@ -35,12 +35,16 @@ const LoginForm = () => {
 		},
 		validate,
 		onSubmit: (values) => {
-			console.log(JSON.stringify(values, null, 2));
+			if (values.userName === 'yaseen' && values.password === 'trapsoft') {
+				history.push('/ContactForm');
+			} else {
+				console.log('login failure');
+			}
 		},
 	});
 	return (
 		<Formik>
-			<form onSubmit={formik.handleSubmit}>
+			<form onSubmit={formik.handleSubmit.bind(this)}>
 				<h2 className='signup-tab'>Login Form</h2>
 				<label htmlFor='userName'>User Name</label>
 				<MyTextInput
