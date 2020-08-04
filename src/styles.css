@@ -650,7 +650,8 @@ button[type='submit'] {
 	margin-top: 1rem;
 }
 .signup-tab,
-.login-tab {
+.login-tab,
+.contact-form-tab {
 	color: #2a4365;
 	font-family: 'Courier New';
 }

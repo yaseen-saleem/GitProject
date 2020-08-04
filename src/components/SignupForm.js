@@ -46,7 +46,7 @@ export const MyTextInput = ({ label, ...props }) => {
 	);
 };
 
-const validate = (values) => {
+export const validate = (values) => {
 	const errors = {};
 	if (!values.firstName) {
 		errors.firstName = 'Required';
@@ -70,6 +70,12 @@ const validate = (values) => {
 		errors.password = 'Required';
 	} else if (values.password.length > 12) {
 		errors.password = 'Must be 12 characters or less';
+	}
+
+	if (!values.contactNumber) {
+		errors.contactNumber = 'Required';
+	} else if (values.contactNumber.length === 1) {
+		errors.contactNumber = 'Must be exactly equal to 11 characters';
 	}
 
 	return errors;

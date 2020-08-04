@@ -8,8 +8,9 @@ import {
 	Formik,
 } from 'formik';
 import { MyTextInput } from './SignupForm';
+import { useHistory } from 'react-router-dom';
 
-const validate = (values) => {
+export const validate = (values) => {
 	const errors = {};
 	if (!values.userName) {
 		errors.userName = 'Required';
