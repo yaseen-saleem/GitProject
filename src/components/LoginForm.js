@@ -37,6 +37,7 @@ const LoginForm = ({ history }) => {
 		validate,
 		onSubmit: (values) => {
 			if (values.userName === 'yaseen' && values.password === 'trapsoft') {
+				console.log(values);
 				history.push('/ContactForm');
 			} else {
 				console.log('login failure');

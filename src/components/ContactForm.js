@@ -72,7 +72,7 @@ const ContactForm = () => {
 					<div>{formik.errors.contactNumber}</div>
 				) : null}
 				{/* Contact Mobile Number Component Ends*/}
-				<button type='submit'>Sign up</button>
+				<button type='submit'>Save Contact</button>
 			</form>
 		</Formik>
 	);
